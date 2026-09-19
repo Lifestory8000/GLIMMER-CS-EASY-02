@@ -7,7 +7,7 @@ typedef struct node{
 int main(void){
 node *n1 = (node *)malloc(sizeof(node));
 node *p=n1;
-p->data=2;
+p->data=0;
 p->next=NULL;
 node *head=n1;
 printf("data=\n");
