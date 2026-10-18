@@ -36,18 +36,27 @@ void printallnode(node *p){
 
 }
 void checklocation(int number, node *p){
-    int i=0;
+    int i=1;
     while(p !=NULL && p->data!=number){
         i++;
         p=p->next; 
     }
-    if(p==NULL){
-        printf("false\n");
-        i=114514;
-    }
     printf("与%d距离%d步\n", number, i);
+    if(p==NULL){
+        return;
+    }
 }
 node *deletenote(int number, node *p){
+    node *r=p;
+    int j=0;
+    while(r!=NULL){
+        j++;
+        r=r->next;
+    }
+    if(j<number){
+        printf("false\n");
+        return p;
+    }
     if(p==NULL){
         printf("false\n");
         return NULL;
@@ -101,6 +110,17 @@ node *verse(node *p){
     }
     return p3;
 }
+node *reverse(node *p){
+    node *a=NULL;
+    node *b=p;
+    while(b!=NULL){
+        node *c=b->next;
+        b->next=a;
+        a=b;
+        b=c;
+    }
+    return a;
+}
 int main(void){
 node *head=addnode(0);
 node *A=headinsertnode(5, head);
@@ -114,4 +134,9 @@ printallnode(B);
 checklocation(5, B);
 node *G=verse(B);
 printallnode(G);
+node *K=reverse(G);
+printallnode(K);
+node *R=deletenote(3, K);
+printallnode(R);
+}
 }
